@@ -12,7 +12,7 @@ using UnityEngine.XR.ARSubsystems;
 [RequireComponent(typeof(ARAnchorManager))]
 [RequireComponent(typeof(ARRaycastManager))]
 [RequireComponent(typeof(ARPlaneManager))]
-[RequireComponent(typeof())] // TO MODIFY
+//[RequireComponent(typeof())] // TO MODIFY
 public class AnchorOnWall : MonoBehaviour
 {
     // This is the prefab that will appear every time an anchor is created.
@@ -59,16 +59,16 @@ public class AnchorOnWall : MonoBehaviour
 			return;
 		}
 		
-		timeLeft = 15.0f
+		timeLeft = 15.0f;
 
         var touch = Input.GetTouch(0);
         if (touch.phase != TouchPhase.Began)
             return;
 		
 		// TO COMPLETE : CAST RAY FROM CAMERA.TRANSFORM.POSITION, CAMERA.TRANSFORM.forward
-		Ray ray = new Ray()
+		//Ray ray = new Ray()
 		// OU ALORS
-		Ray ray = camera.ScreenPointToRay(Input.mousePosition); // LIKE THAT?
+		//Ray ray = camera.ScreenPointToRay(Input.mousePosition); // LIKE THAT?
 		
         if (m_RaycastManager.Raycast(touch.position, s_Hits, TrackableType.PlaneWithinPolygon))
         {
