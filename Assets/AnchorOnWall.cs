@@ -67,6 +67,8 @@ public class AnchorOnWall : MonoBehaviour
 		
 		// TO COMPLETE : CAST RAY FROM CAMERA.TRANSFORM.POSITION, CAMERA.TRANSFORM.forward
 		Ray ray = new Ray()
+		// OU ALORS
+		Ray ray = camera.ScreenPointToRay(Input.mousePosition); // LIKE THAT?
 		
         if (m_RaycastManager.Raycast(touch.position, s_Hits, TrackableType.PlaneWithinPolygon))
         {
