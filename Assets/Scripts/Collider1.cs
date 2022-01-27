@@ -17,6 +17,8 @@ public class Collider1 : MonoBehaviour
     }
     void OnTriggerExit(Collider other)
     {
-        GameObject.Find("CouteauPPE_v1").SetActive(true);
+
+        Destroy(GameObject.Find("CouteauPPE_v1"));
+        Destroy(GameObject.Find("Overlay"));
     }
 }
