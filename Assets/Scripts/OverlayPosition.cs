@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OverlayPosition : MonoBehaviour
+/*public class OverlayPosition : MonoBehaviour
 {
     GameObject camera;
 	float ratio;
@@ -17,12 +17,12 @@ public class OverlayPosition : MonoBehaviour
 	// Start is called before the first frame update
     void Start()
     {
-        /*camera = GameObject.Find("AR Camera");
+        camera = GameObject.Find("AR Camera");
 		if (camera) {
 			if (camera.GetType().Equals(typeof(Camera))) {
 				ratio = camera.aspect;
 			}
-		}*/
+		}
     }
 
     // Update is called once per frame
@@ -37,6 +37,6 @@ public class OverlayPosition : MonoBehaviour
     }
 	
 	void SetCornerPositions() {
-		RecCorUL.transform
+		
 	}
-}
+}*/
