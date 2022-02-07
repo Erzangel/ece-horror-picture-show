@@ -7,7 +7,7 @@ public class SceneLoader : MonoBehaviour
 
     private void Awake()
     {
-		
+		Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 
     private void Update()
