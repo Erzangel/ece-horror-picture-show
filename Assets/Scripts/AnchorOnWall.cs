@@ -107,13 +107,13 @@ public class AnchorOnWall : MonoBehaviour
         }
     }
 
-    static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
+    public List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
 
-    List<ARAnchor> m_AnchorPoints;
+    public List<ARAnchor> m_AnchorPoints;
 
-    ARRaycastManager m_RaycastManager;
+    public ARRaycastManager m_RaycastManager;
 
-    ARAnchorManager m_AnchorManager;
+    public ARAnchorManager m_AnchorManager;
 
-    ARPlaneManager m_PlaneManager;
+    public ARPlaneManager m_PlaneManager;
 }
