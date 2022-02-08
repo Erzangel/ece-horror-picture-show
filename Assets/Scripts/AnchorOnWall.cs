@@ -18,6 +18,9 @@ public class AnchorOnWall : MonoBehaviour
     // This is the prefab that will appear every time an anchor is created.
     [SerializeField]
     GameObject m_AnchorPrefab;
+	
+	// This is the empty GameObject dummy that will cast rays for us
+	private GameObject dummy;
 
     public GameObject AnchorPrefab
     {
@@ -46,7 +49,8 @@ public class AnchorOnWall : MonoBehaviour
         m_AnchorManager = GetComponent<ARAnchorManager>();
         m_PlaneManager = GetComponent<ARPlaneManager>();
         m_AnchorPoints = new List<ARAnchor>();
-		// TO ADD : GET CAMERA COMPONENT
+		// We additionally fetch the dummy
+		dummy = GameObject.Find("EventTriggerDummy");
     }
 	
 	float timeLeft = 30.0f;
@@ -59,18 +63,25 @@ public class AnchorOnWall : MonoBehaviour
 			return;
 		}
 		
-		timeLeft = 15.0f;
+		timeLeft = 30.0f;
 
-        var touch = Input.GetTouch(0);
+        /*var touch = Input.GetTouch(0);
         if (touch.phase != TouchPhase.Began)
-            return;
+            return;*/
 		
+		// Cast ray
+		
+		/// OLD CODE
 		// TO COMPLETE : CAST RAY FROM CAMERA.TRANSFORM.POSITION, CAMERA.TRANSFORM.forward
 		//Ray ray = new Ray()
 		// OU ALORS
 		//Ray ray = camera.ScreenPointToRay(Input.mousePosition); // LIKE THAT?
 		
-        if (m_RaycastManager.Raycast(touch.position, s_Hits, TrackableType.PlaneWithinPolygon))
+		/// NEW CODE
+		// Cast ray from dummy
+		Ray dummyRay = new Ray(dummy.transform.position, Vector3.down);
+		
+        if (m_RaycastManager.Raycast(dummyRay, s_Hits, TrackableType.PlaneWithinPolygon))
         {
             // Raycast hits are sorted by distance, so the first one
             // will be the closest hit.
