@@ -52,7 +52,7 @@ public class AnchorOnWall : MonoBehaviour
 		dummy = GameObject.Find("EventTriggerDummy");
     }
 	
-	float timeLeft = 30.0f;
+	float timeLeft = 15.0f;
 
     void Update()
     {
@@ -62,7 +62,7 @@ public class AnchorOnWall : MonoBehaviour
 			return;
 		}
 		
-		timeLeft = 30.0f;
+		timeLeft = 15.0f;
 
         /*var touch = Input.GetTouch(0);
         if (touch.phase != TouchPhase.Began)
