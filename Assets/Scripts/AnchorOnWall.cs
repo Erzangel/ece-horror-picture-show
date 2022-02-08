@@ -12,7 +12,6 @@ using UnityEngine.XR.ARSubsystems;
 [RequireComponent(typeof(ARAnchorManager))]
 [RequireComponent(typeof(ARRaycastManager))]
 [RequireComponent(typeof(ARPlaneManager))]
-//[RequireComponent(typeof())] // TO MODIFY
 public class AnchorOnWall : MonoBehaviour
 {
     // This is the prefab that will appear every time an anchor is created.
