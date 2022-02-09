@@ -15,7 +15,14 @@ public class Event0 : Event
 
     void Awake()
     {
-        prefab = Resources.Load("ZombieProto");
+        GameObject arSessionOrigin = GameObject.Find("AR Session Origin");
+		m_RaycastManager = arSessionOrigin.GetComponent<ARRaycastManager>();
+        m_AnchorManager = arSessionOrigin.GetComponent<ARAnchorManager>();
+        m_PlaneManager = arSessionOrigin.GetComponent<ARPlaneManager>();
+        m_AnchorPoints = new List<ARAnchor>();
+		
+		dummy = GameObject.Find("EventTriggerDummy");
+		prefab = Resources.Load("ZombieProto");
     }
 
     void Update()
@@ -26,19 +33,19 @@ public class Event0 : Event
         
         Ray dummyRay = new Ray(dummy.transform.position, Vector3.down);
 		
-        if (AR.m_RaycastManager.Raycast(dummyRay, AR.s_Hits, TrackableType.PlaneWithinPolygon))
+        if (AR.m_RaycastManager.Raycast(dummyRay, s_Hits, TrackableType.PlaneWithinPolygon))
         {
             // Raycast hits are sorted by distance, so the first one
             // will be the closest hit.
-            var hitPose = AR.s_Hits[0].pose;
-            var hitTrackableId = AR.s_Hits[0].trackableId;
-            var hitPlane = AR.m_PlaneManager.GetPlane(hitTrackableId);
+            var hitPose = s_Hits[0].pose;
+            var hitTrackableId = s_Hits[0].trackableId;
+            var hitPlane = m_PlaneManager.GetPlane(hitTrackableId);
 
             // This attaches an anchor to the area on the plane corresponding to the raycast hit,
             // and afterwards instantiates an instance of your chosen prefab at that point.
             // This prefab instance is parented to the anchor to make sure the position of the prefab is consistent
             // with the anchor, since an anchor attached to an ARPlane will be updated automatically by the ARAnchorManager as the ARPlane's exact position is refined.
-            var anchor = AR.m_AnchorManager.AttachAnchor(hitPlane, hitPose);
+            var anchor = m_AnchorManager.AttachAnchor(hitPlane, hitPose);
             Instantiate(prefab, anchor.transform);
 
             if (anchor == null)
@@ -48,7 +55,7 @@ public class Event0 : Event
             else
             {
                 // Stores the anchor so that it may be removed later.
-                AR.m_AnchorPoints.Add(anchor);
+                m_AnchorPoints.Add(anchor);
             }
 
             eventManager.nextEvent();
@@ -56,4 +63,14 @@ public class Event0 : Event
             is_active = false;
         }
     }
+	
+	public List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
+
+    public List<ARAnchor> m_AnchorPoints;
+
+    public ARRaycastManager m_RaycastManager;
+
+    public ARAnchorManager m_AnchorManager;
+
+    public ARPlaneManager m_PlaneManager;
 }

@@ -609,7 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 788587e994f1943f3856c1c332db429b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AnchorPrefab: {fileID: 1998371697940912222, guid: d58be77cba3adf54cb14b15052b86514,
+  m_AnchorPrefab: {fileID: 4493914613880827488, guid: 6dc4cf4496348884d8ee27743ae38562,
     type: 3}
 --- !u!114 &388525036
 MonoBehaviour:
@@ -642,7 +642,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 388525029}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6422dc199eafe864695c3c1fdd498919, type: 3}
   m_Name: 
@@ -1368,6 +1368,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1610862969}
+  - component: {fileID: 1610862970}
+  - component: {fileID: 1610862968}
   - component: {fileID: 1610862967}
   m_Layer: 0
   m_Name: EventSystem
@@ -1390,6 +1392,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   event_list: []
   active_event: 0
+--- !u!114 &1610862968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610862966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc2d847845bed047b0face5fd05e595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  done: 0
+  is_active: 1
+  dummy: {fileID: 217485427}
+  m_AnchorPoints: []
+  m_RaycastManager: {fileID: 0}
+  m_AnchorManager: {fileID: 0}
+  m_PlaneManager: {fileID: 0}
 --- !u!4 &1610862969
 Transform:
   m_ObjectHideFlags: 0
@@ -1404,6 +1425,21 @@ Transform:
   m_Father: {fileID: 22732924}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1610862970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610862966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58971e14efd64944aa14b5768aee4f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  done: 0
+  is_active: 0
+  dummy: {fileID: 0}
 --- !u!1 &1642911127
 GameObject:
   m_ObjectHideFlags: 0
