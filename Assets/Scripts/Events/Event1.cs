@@ -9,7 +9,7 @@ public class Event1 : Event
 {
     
     float delta;
-    Object prefab;
+    GameObject zombie;
     
     public Event1(System.Type t) : base(t){}
 
@@ -18,6 +18,7 @@ public class Event1 : Event
         base.Awake();
         delta = 5.0f;
 		zombie = GameObject.Find("ZombieProto");
+		Debug.Log(zombie);
 		s_Hits = new List<ARRaycastHit>();
     }
 
@@ -37,7 +38,9 @@ public class Event1 : Event
                 return;
             }
             
-            
+            eventManager.clearEvent<Event0>();
+			done = true;
+            Debug.Log("Script1 Done");
         }
         
     }
