@@ -18,6 +18,7 @@ public class Event0 : Event
         base.Awake();
         delta = 5.0f;
 		prefab = Resources.Load("ZombieProto");
+		s_Hits = new List<ARRaycastHit>();
     }
 
     void Update()
@@ -37,6 +38,7 @@ public class Event0 : Event
             }
             
             Ray dummyRay = new Ray(dummy.transform.position, Vector3.down);
+			//Debug.Log(dummyRay);
             if (m_RaycastManager.Raycast(
                 dummyRay, 
                 s_Hits, 
@@ -78,5 +80,5 @@ public class Event0 : Event
         }
         
     }
-	public List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
+	public List<ARRaycastHit> s_Hits;
 }
