@@ -19,6 +19,8 @@ public class Event : MonoBehaviour
     //public bool is_active = false;
     //Spatial reference for instanciating AR objects (sticks to the camera)
     public GameObject dummy;
+    //List of prefabs used in the event. Must be set here to be destroyed when we clear the event.
+    public List<GameObject> prefabs;
     //Constructor : pass the type of the event (the component name)
     public Event(System.Type t)
     {
@@ -36,6 +38,15 @@ public class Event : MonoBehaviour
         m_AnchorPoints = new List<ARAnchor>();
 
         dummy = GameObject.Find("EventTriggerDummy");
+
+        prefabs = new List<GameObject>();
+    }
+    public void Clear()
+    {
+        foreach(GameObject prefab in prefabs)
+        {
+            Destroy(prefab);
+        }
     }
     public List<ARAnchor> m_AnchorPoints;
 

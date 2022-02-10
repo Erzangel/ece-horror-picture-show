@@ -12,6 +12,8 @@ public class ScriptedEvents : MonoBehaviour
     float delta_sync = 7.0f;
     bool started = false;
 
+    public List<Event> scripts;
+
     void Awake()
     {
         //Add list of events
@@ -27,7 +29,7 @@ public class ScriptedEvents : MonoBehaviour
         else if(started == false)
         {
             started = true;
-            playEvent(typeof(Event0));
+            playEvent<Event0>();
         }
     }
 
@@ -37,15 +39,24 @@ public class ScriptedEvents : MonoBehaviour
         active_event++;
     }*/
     //Start event, instanciate its script
-    public void playEvent(System.Type t)
+    public void playEvent<T>()
     {
+        Debug.Log(typeof(T));
         //event_list[active_event].is_active = true;
-        gameObject.AddComponent(t); //(event_list[index].component);
+        scripts.Add((Event) gameObject.AddComponent(typeof(T))); //(event_list[index].component);
+        Debug.Log(scripts[0]);
     }
     //End event, clear its instance
-    public void clearEvent(System.Type t)
+    //Only call once you don't need anything that was generated from that event (prefab, etc)
+    public void clearEvent<T>()
     {
-        Destroy(GetComponent(t));
+        Event comp = (Event) GetComponent(typeof(T));
+        comp.Clear();
+        //Remove prefabs from game environment
+        
+        scripts.Remove(comp);
+        Destroy(comp);
+        
         //event_list[active_event].is_active = false;
     }
 }

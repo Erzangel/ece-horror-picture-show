@@ -9,7 +9,6 @@ public class Event0 : Event
 {
     
     float delta;
-    Object prefab;
     
     public Event0(System.Type t) : base(t){}
 
@@ -17,7 +16,7 @@ public class Event0 : Event
     {
         base.Awake();
         delta = 5.0f;
-		prefab = Resources.Load("ZombieProto");
+		prefabs.Add(Resources.Load<GameObject>("ZombieProto.prefab"));
 		s_Hits = new List<ARRaycastHit>();
     }
 
@@ -56,7 +55,7 @@ public class Event0 : Event
                 // This prefab instance is parented to the anchor to make sure the position of the prefab is consistent
                 // with the anchor, since an anchor attached to an ARPlane will be updated automatically by the ARAnchorManager as the ARPlane's exact position is refined.
                 var anchor = m_AnchorManager.AttachAnchor(hitPlane, hitPose);
-                Instantiate(prefab, anchor.transform);
+                Instantiate(prefabs[0], anchor.transform);
 
                 if (anchor == null)
                 {
