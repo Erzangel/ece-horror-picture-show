@@ -5,14 +5,14 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
 //Second event : if the previous zombie exists, destroy him after 2 seconds when looking at him
-public class Event1 : Event
+public class Event1_backup : Event
 {
     
     float delta;
     GameObject zombie;
 	GameObject arCamera;
     
-    public Event1(System.Type t) : base(t){}
+    public Event1_backup(System.Type t) : base(t){}
 
     protected override void Awake()
     {

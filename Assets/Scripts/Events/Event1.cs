@@ -19,9 +19,10 @@ public class Event1 : Event
     {
         base.Awake();
 		zombie = GameObject.Find("ZombieProto");
-		Debug.Log(zombie);
+		Debug.Log("Zombie:" + zombie);
 		s_Hits = new List<ARRaycastHit>();
         ar_cam = GameObject.Find("AR Camera");
+		Debug.Log(ar_cam);
     }
 
     void Update()

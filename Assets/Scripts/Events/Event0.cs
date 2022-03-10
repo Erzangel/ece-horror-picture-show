@@ -17,6 +17,7 @@ public class Event0 : Event
         base.Awake();
         delta = 5.0f;
 		prefabs.Add(Resources.Load<GameObject>("ZombieProto"));
+		prefabs[0].name = "ZombieProto";
 		Debug.Log(prefabs[0]);
 		s_Hits = new List<ARRaycastHit>();
     }
