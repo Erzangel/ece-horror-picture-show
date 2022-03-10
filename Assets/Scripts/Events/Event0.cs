@@ -33,7 +33,7 @@ public class Event0 : Event
         {
             if(done == true)
             {
-                Debug.Log("Out Update Event0");
+                //Debug.Log("Out Update Event0");
                 return;
             }
             
