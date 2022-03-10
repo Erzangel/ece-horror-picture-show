@@ -18,6 +18,8 @@ public class Event0 : Event
         delta = 5.0f;
 		prefabs.Add(Resources.Load<GameObject>("ZombieProto"));
 		prefabs[0].name = "ZombieProto";
+		prefabs[0].tag = "ZombieProto";
+		Debug.Log("Zombie tag in Event0:" + prefabs[0].tag);
 		Debug.Log(prefabs[0]);
 		s_Hits = new List<ARRaycastHit>();
     }

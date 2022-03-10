@@ -18,7 +18,7 @@ public class Event1 : Event
     protected override void Awake()
     {
         base.Awake();
-		zombie = GameObject.Find("ZombieProto");
+		zombie = GameObject.FindWithTag("ZombieProto");
 		Debug.Log("Zombie:" + zombie);
 		s_Hits = new List<ARRaycastHit>();
         ar_cam = GameObject.Find("AR Camera");
@@ -29,7 +29,8 @@ public class Event1 : Event
     {
         
         from_object = zombie.transform.position - ar_cam.transform.position;
-        if(Vector3.Angle(ar_cam.transform.forward, from_object) < 45.0f)
+		Debug.Log(Vector3.Angle(ar_cam.transform.forward, from_object));
+        if(Vector3.Angle(ar_cam.transform.forward, from_object) < 15.0f)
         {
             eventManager.clearEvent<Event0>();
 			done = true;
