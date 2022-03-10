@@ -7,40 +7,37 @@ using UnityEngine.XR.ARSubsystems;
 //Second event : if the previous zombie exists, destroy him after 2 seconds when looking at him
 public class Event1 : Event
 {
-    
-    float delta;
     GameObject zombie;
+
+    Vector3 from_object;
     
     public Event1(System.Type t) : base(t){}
+
+    GameObject ar_cam;
 
     protected override void Awake()
     {
         base.Awake();
-        delta = 5.0f;
 		zombie = GameObject.Find("ZombieProto");
 		Debug.Log(zombie);
 		s_Hits = new List<ARRaycastHit>();
+        ar_cam = GameObject.Find("AR Camera");
     }
 
     void Update()
     {
-        if(delta > 0)
+        
+        from_object = zombie.transform.position - ar_cam.transform.position;
+        if(Vector3.Angle(ar_cam.transform.forward, from_object) < 45.0f)
         {
-            //Debug.Log(delta);
-            delta -= Time.deltaTime;
-        }
-            
-        else
-        {
-            if(done == true)
-            {
-                Debug.Log("Out Update");
-                return;
-            }
-            
             eventManager.clearEvent<Event0>();
 			done = true;
             Debug.Log("Script1 Done");
+        }
+        if(done == true)
+        {
+            Debug.Log("Out Update");
+            return;
         }
         
     }
