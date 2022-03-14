@@ -11,6 +11,9 @@ public class Event2 : Event
     float delta;
     GameObject cup;
 	GameObject arCamera;
+	float xSpeed = 0.1f;
+	float ySpeed = 0.1f;
+	float zAcceleration = 0.01f;
     
     public Event2(System.Type t) : base(t){}
 
@@ -19,6 +22,16 @@ public class Event2 : Event
         base.Awake();
         delta = 5.0f;
         arCamera = GameObject.Find("AR Camera");
+		cup = Instantiate(Resources.Load<GameObject>("tasseCassePPE"));
+		cup.transform.position = arCamera.transform.position + new Vector3(-0.5f, 0.2f, 0);
+		Rigidbody cupRigidBody = cup.AddComponent<Rigidbody>();
+		cupRigidBody.mass = 5;
+		BoxCollider cupBoxCollider = cup.AddComponent<BoxCollider>();
+        instances.Add(cup);
+		if (cup == null)
+        {
+            Debug.Log("Error instantiating cup.");
+        }
     }
 
     void Update()
@@ -29,7 +42,6 @@ public class Event2 : Event
             delta -= Time.deltaTime;
         }
 		
-		
         else
         {
             if(done == true)
@@ -38,26 +50,9 @@ public class Event2 : Event
                 return;
             }
             
-           
-
-            // This attaches an anchor to the area on the plane corresponding to the raycast hit,
-            // and afterwards instantiates an instance of your chosen prefab at that point.
-            // This prefab instance is parented to the anchor to make sure the position of the prefab is consistent
-            // with the anchor, since an anchor attached to an ARPlane will be updated automatically by the ARAnchorManager as the ARPlane's exact position is refined.
-            cup = Instantiate(Resources.Load<GameObject>("tasseCassePPE"));
-			Rigidbody cupRigidBody = cup.AddComponent<Rigidbody>();
-			cupRigidBody.mass = 5;
-			BoxCollider cupBoxCollider = cup.AddComponent<BoxCollider>();
-            instances.Add(cup);
-            if (cup == null)
-            {
-                Debug.Log("Error instantiating cup.");
-            }
-            else
-            {
-                // Stores the anchor so that it may be removed later.
-                //m_AnchorPoints.Add(anchor);
-            }
+			cup.transform.position = cup.transform.position + new Vector3(Time.deltaTime * xSpeed, Time.deltaTime * ySpeed, Time.deltaTime*Time.deltaTime * zAcceleration);
+			
+            
 
             //eventManager.playEvent(typeof(Event1));
             done = true;

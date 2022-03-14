@@ -34,6 +34,7 @@ public class Event1 : Event
         {
             eventManager.clearEvent<Event0>();
 			done = true;
+			eventManager.playEvent<Event3>();
             Debug.Log("Script1 Done");
         }
         if(done == true)
