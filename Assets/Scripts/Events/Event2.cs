@@ -22,7 +22,7 @@ public class Event2 : Event
         base.Awake();
         delta = 5.0f;
         arCamera = GameObject.Find("AR Camera");
-		cup = Instantiate(Resources.Load<GameObject>("tasseCassePPE"));
+		cup = Instantiate(Resources.Load<GameObject>("Tasse"));
 		cup.transform.position = arCamera.transform.position + new Vector3(-0.5f, 0.2f, 0);
 		Rigidbody cupRigidBody = cup.AddComponent<Rigidbody>();
 		cupRigidBody.mass = 5;
