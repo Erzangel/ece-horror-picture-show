@@ -22,16 +22,10 @@ public class Event2 : Event
         base.Awake();
         delta = 5.0f;
         arCamera = GameObject.Find("AR Camera");
-		cup = Instantiate(Resources.Load<GameObject>("Tasse"));
-		cup.transform.position = arCamera.transform.position + new Vector3(-0.5f, 0.2f, 0);
-		Rigidbody cupRigidBody = cup.AddComponent<Rigidbody>();
-		cupRigidBody.mass = 5;
-		BoxCollider cupBoxCollider = cup.AddComponent<BoxCollider>();
+		//Rigidbody cupRigidBody = cup.AddComponent<Rigidbody>();
+		//cupRigidBody.mass = 5;
+		//BoxCollider cupBoxCollider = cup.AddComponent<BoxCollider>();
         instances.Add(cup);
-		if (cup == null)
-        {
-            Debug.Log("Error instantiating cup.");
-        }
     }
 
     void Update()
@@ -50,9 +44,16 @@ public class Event2 : Event
                 return;
             }
             
-			cup.transform.position = cup.transform.position + new Vector3(Time.deltaTime * xSpeed, Time.deltaTime * ySpeed, Time.deltaTime*Time.deltaTime * zAcceleration);
+			//cup.transform.position = cup.transform.position + new Vector3(Time.deltaTime * xSpeed, Time.deltaTime * ySpeed, Time.deltaTime*Time.deltaTime * zAcceleration);
 			
-            
+            cup = Instantiate(Resources.Load<GameObject>("Tasse"));
+			cup.transform.position = arCamera.transform.position + new Vector3(-0.5f, 0.2f, 1.8f);
+			Rigidbody rigidbody = cup.GetComponent<Rigidbody>();
+			rigidbody.velocity = transform.TransformDirection(new Vector3((float)0.6, 0, 0));
+			if (cup == null)
+			{
+				Debug.Log("Error instantiating cup.");
+			}
 
             //eventManager.playEvent(typeof(Event1));
             done = true;
