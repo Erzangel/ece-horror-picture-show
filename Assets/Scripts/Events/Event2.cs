@@ -40,7 +40,7 @@ public class Event2 : Event
         {
             if(done == true)
             {
-                Debug.Log("Out Update");
+                //Debug.Log("Out Update");
                 return;
             }
             
@@ -58,7 +58,7 @@ public class Event2 : Event
             //eventManager.playEvent(typeof(Event1));
             done = true;
             Debug.Log("Script2 Done");
-			//eventManager.playEvent<Event1>();
+			eventManager.playEvent<Event4>();
         }
         
         

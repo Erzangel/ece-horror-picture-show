@@ -42,7 +42,7 @@ public class Event3 : Event
         {
             if(done == true)
             {
-                Debug.Log("Out Update");
+                //Debug.Log("Out Update");
                 return;
             }
             

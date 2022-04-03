@@ -27,7 +27,11 @@ public class Event1 : Event
 
     void Update()
     {
-        
+        if(done == true)
+        {
+            //Debug.Log("Out Update");
+            return;
+        }
         from_object = zombie.transform.position - ar_cam.transform.position;
 		Debug.Log(Vector3.Angle(ar_cam.transform.forward, from_object));
         if(Vector3.Angle(ar_cam.transform.forward, from_object) < 15.0f)
@@ -37,11 +41,7 @@ public class Event1 : Event
 			eventManager.playEvent<Event3>();
             Debug.Log("Script1 Done");
         }
-        if(done == true)
-        {
-            Debug.Log("Out Update");
-            return;
-        }
+        
         
     }
 	public List<ARRaycastHit> s_Hits;
