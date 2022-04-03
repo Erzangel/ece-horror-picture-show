@@ -8,8 +8,9 @@ using UnityEngine.XR.ARSubsystems;
 public class Event1 : Event
 {
     GameObject zombie;
-
+	GameObject staticScreen;
     Vector3 from_object;
+	float deltaStatic;
     
     public Event1(System.Type t) : base(t){}
 
@@ -19,10 +20,12 @@ public class Event1 : Event
     {
         base.Awake();
 		zombie = GameObject.FindWithTag("ZombieProto");
+		deltaStatic = 0.3f;
 		Debug.Log("Zombie:" + zombie);
 		s_Hits = new List<ARRaycastHit>();
         ar_cam = GameObject.Find("AR Camera");
 		Debug.Log(ar_cam);
+		staticScreen = GameObject.Find("Static");
     }
 
     void Update()
@@ -34,12 +37,23 @@ public class Event1 : Event
         }
         from_object = zombie.transform.position + new Vector3(0,1,0) - ar_cam.transform.position;
 		Debug.Log(Vector3.Angle(ar_cam.transform.forward, from_object));
-        if(Vector3.Angle(ar_cam.transform.forward, from_object) < 30.0f)
+        if(Vector3.Angle(ar_cam.transform.forward, from_object) < 27.0f)
         {
-            eventManager.clearEvent<Event0>();
-			done = true;
-			eventManager.playEvent<Event3>();
-            Debug.Log("Script1 Done");
+			if (deltaStatic > 0)
+			{
+				deltaStatic -= Time.deltaTime;
+				staticScreen.GetComponent<UnityEngine.Video.VideoPlayer>().targetCameraAlpha = 0.3F;
+				staticScreen.GetComponent<UnityEngine.Video.VideoPlayer>().SetDirectAudioVolume(0, 0.15f);
+			}
+			else 
+			{
+				staticScreen.GetComponent<UnityEngine.Video.VideoPlayer>().targetCameraAlpha = 0F;
+				staticScreen.GetComponent<UnityEngine.Video.VideoPlayer>().SetDirectAudioVolume(0, 0);
+				eventManager.clearEvent<Event0>();
+				done = true;
+				eventManager.playEvent<Event3>();
+				Debug.Log("Script1 Done");
+			}
         }
         
         

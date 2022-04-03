@@ -18,6 +18,8 @@ public class Event4 : Event
 	CapsuleCollider actorCollider;
 	public List<ARRaycastHit> s_Hits;
 	
+	GameObject dummy2;
+	
     
     public Event4(System.Type t) : base(t){}
 
@@ -36,6 +38,7 @@ public class Event4 : Event
 		prefabs[0].AddComponent<AudioSource>();
 		prefabs[0].GetComponent<AudioSource>().clip = sound;
 		actorCollider = arCamera.GetComponent<CapsuleCollider>();
+		dummy2 = GameObject.Find("EventTriggerDummy2");
     }
 
     void Update()
@@ -57,7 +60,7 @@ public class Event4 : Event
 			
 			if (instantiated == false)
 			{
-				Ray dummyRay = new Ray(dummy.transform.position, Vector3.down);
+				Ray dummyRay = new Ray(dummy2.transform.position, Vector3.down);
 				Debug.Log(dummyRay);
 				if (m_RaycastManager.Raycast(
 					dummyRay, 
@@ -76,7 +79,7 @@ public class Event4 : Event
 					// This prefab instance is parented to the anchor to make sure the position of the prefab is consistent
 					// with the anchor, since an anchor attached to an ARPlane will be updated automatically by the ARAnchorManager as the ARPlane's exact position is refined.
 					var anchor = m_AnchorManager.AttachAnchor(hitPlane, hitPose);
-					anchor.transform.Translate(arCamera.transform.forward*3);
+					anchor.transform.Translate(new Vector3(6f, 0, 6f));
 					instances.Add(zombie = Instantiate(prefabs[0], anchor.transform));
 
 					if (anchor == null)
