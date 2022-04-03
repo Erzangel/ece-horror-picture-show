@@ -59,6 +59,13 @@ public class Event0 : Event
                 // This prefab instance is parented to the anchor to make sure the position of the prefab is consistent
                 // with the anchor, since an anchor attached to an ARPlane will be updated automatically by the ARAnchorManager as the ARPlane's exact position is refined.
                 var anchor = m_AnchorManager.AttachAnchor(hitPlane, hitPose);
+                if(m_RaycastManager.Raycast(
+                    new Ray(anchor.transform.position, new Vector3(prefabs[0].transform.position.x, prefabs[0].transform.position.y, prefabs[0].transform.position.z)),
+                    s_Hits,
+                    TrackableType.PlaneWithinPolygon
+                    ))
+                    anchor.transform.position = new Vector3(anchor.transform.position.x-s_Hits[0].distance, anchor.transform.position.y, anchor.transform.position.z);
+                    
                 instances.Add(Instantiate(prefabs[0], anchor.transform));
 
                 if (anchor == null)
