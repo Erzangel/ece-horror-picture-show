@@ -414,6 +414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3305920991726709325}
   - component: {fileID: 7537417665459280382}
+  - component: {fileID: -8951148809181023937}
   m_Layer: 0
   m_Name: ZombieProto
   m_TagString: Untagged
@@ -457,6 +458,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &-8951148809181023937
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998371697940912222}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &2057808353243881084
 GameObject:
   m_ObjectHideFlags: 0

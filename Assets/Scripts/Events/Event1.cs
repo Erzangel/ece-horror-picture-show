@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
-//Second event : if the previous zombie exists, destroy him after 2 seconds when looking at him
+//Second event : if the previous zombie exists, destroy him when looking at him
 public class Event1 : Event
 {
     GameObject zombie;
@@ -28,9 +28,9 @@ public class Event1 : Event
     void Update()
     {
         
-        from_object = zombie.transform.position - ar_cam.transform.position;
+        from_object = zombie.transform.position + new Vector3(0,1,0) - ar_cam.transform.position;
 		Debug.Log(Vector3.Angle(ar_cam.transform.forward, from_object));
-        if(Vector3.Angle(ar_cam.transform.forward, from_object) < 15.0f)
+        if(Vector3.Angle(ar_cam.transform.forward, from_object) < 30.0f)
         {
             eventManager.clearEvent<Event0>();
 			done = true;
