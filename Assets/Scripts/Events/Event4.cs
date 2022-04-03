@@ -9,6 +9,7 @@ public class Event4 : Event
 {
     bool instantiated = false;
     float deltaInit;
+	float deltaEnd;
     GameObject soundEmitter;
 	GameObject arCamera;
 	Vector3 targetPosition;
@@ -22,6 +23,7 @@ public class Event4 : Event
     {
         base.Awake();
         deltaInit = 3.0f; // Delay before which the Event will attempt to spawn the Zombie
+		deltaEnd = 1.5f;
         arCamera = GameObject.Find("AR Camera"); // Get AR Camera from Scene
 		s_Hits = new List<ARRaycastHit>(); // List for Raycast hits upon instantiating
 		prefabs.Add(Resources.Load<GameObject>("ZombieEnding")); // Prefab to use for the ZombieSpawn
@@ -52,7 +54,7 @@ public class Event4 : Event
 			
 			if (instantiated == false)
 			{
-				Ray dummyRay = new Ray(arCamera.transform.position + new Vector3(0, 0, 3f), Vector3.down);
+				Ray dummyRay = new Ray(dummy.transform.position, Vector3.down);
 				Debug.Log(dummyRay);
 				if (m_RaycastManager.Raycast(
 					dummyRay, 
@@ -96,9 +98,20 @@ public class Event4 : Event
 				zombie.transform.LookAt(targetPosition);
 				// handle 2nd delta or look condition before running
 				// zombie.GetComponent<AudioSource>().Play();
-				done = true;
-				Debug.Log("Script4 Done");
-				eventManager.playEvent<Event5>();
+				
+				if (deltaEnd > 0)
+				{
+					deltaEnd -= Time.deltaTime;
+					transform.Translate(Vector3.forward * 1.5f*Time.deltaTime);
+				}
+				else
+				{
+					done = true;
+					Debug.Log("Script4 Done");
+					eventManager.playEvent<Event5>();
+				}
+				
+				
 			}
            
         }

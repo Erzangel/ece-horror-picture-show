@@ -16,7 +16,7 @@ public class Event5 : Event
     protected override void Awake()
     {
         base.Awake();
-        delta = 3.0f; // Delay before which the Event will cover the screen
+        delta = 0.1f; // Delay before which the Event will cover the screen
 		deltaStatic = 3.0f;
         staticScreen = GameObject.Find("Static");
     }
@@ -47,10 +47,11 @@ public class Event5 : Event
 			}
 			else 
 			{
-				staticScreen.GetComponent<UnityEngine.Video.VideoPlayer>().targetCameraAlpha = 0F;
-				staticScreen.GetComponent<UnityEngine.Video.VideoPlayer>().SetDirectAudioVolume(0, 0);
+				//staticScreen.GetComponent<UnityEngine.Video.VideoPlayer>().targetCameraAlpha = 0F;
+				//staticScreen.GetComponent<UnityEngine.Video.VideoPlayer>().SetDirectAudioVolume(0, 0);
 				done = true;
 				Debug.Log("Script5 Done");
+				UnityEngine.SceneManagement.SceneManager.LoadScene(0);
 			}
         }
     }
