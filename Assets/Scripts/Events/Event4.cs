@@ -9,11 +9,13 @@ public class Event4 : Event
 {
     bool instantiated = false;
     float deltaInit;
-	float deltaEnd;
+	public bool endTrigger = false;
     GameObject soundEmitter;
 	GameObject arCamera;
 	Vector3 targetPosition;
 	GameObject zombie;
+	CapsuleCollider zombieCollider;
+	CapsuleCollider actorCollider;
 	public List<ARRaycastHit> s_Hits;
 	
     
@@ -22,17 +24,18 @@ public class Event4 : Event
     protected override void Awake()
     {
         base.Awake();
+		ID = "ZombieRun";
         deltaInit = 3.0f; // Delay before which the Event will attempt to spawn the Zombie
-		deltaEnd = 1.5f;
         arCamera = GameObject.Find("AR Camera"); // Get AR Camera from Scene
 		s_Hits = new List<ARRaycastHit>(); // List for Raycast hits upon instantiating
 		prefabs.Add(Resources.Load<GameObject>("ZombieEnding")); // Prefab to use for the ZombieSpawn
-		prefabs[0].name = "ZombieProto";
-		prefabs[0].tag = "ZombieProto";
+		prefabs[0].name = "ZombieEnd";
+		prefabs[0].tag = "ZombieEnd";
 		AudioClip sound = (AudioClip) Resources.Load("Sprinting");
 		//Attach the sound
 		prefabs[0].AddComponent<AudioSource>();
 		prefabs[0].GetComponent<AudioSource>().clip = sound;
+		actorCollider = arCamera.GetComponent<CapsuleCollider>();
     }
 
     void Update()
@@ -73,7 +76,8 @@ public class Event4 : Event
 					// This prefab instance is parented to the anchor to make sure the position of the prefab is consistent
 					// with the anchor, since an anchor attached to an ARPlane will be updated automatically by the ARAnchorManager as the ARPlane's exact position is refined.
 					var anchor = m_AnchorManager.AttachAnchor(hitPlane, hitPose);
-					instances.Add(Instantiate(prefabs[0], anchor.transform));
+					anchor.transform.Translate(arCamera.transform.forward*3);
+					instances.Add(zombie = Instantiate(prefabs[0], anchor.transform));
 
 					if (anchor == null)
 					{
@@ -84,27 +88,26 @@ public class Event4 : Event
 						// Stores the anchor so that it may be removed later.
 						m_AnchorPoints.Add(anchor);
 					}
-					zombie = GameObject.FindWithTag("ZombieProto");
 					instantiated = true;
+					
+					zombieCollider = zombie.GetComponent<CapsuleCollider>();
 					Debug.Log("Event4 ZombieSpawn Done");
 					zombie.GetComponent<AudioSource>().Play();
+
+					m_trManager.curEventID = ID;
 				}
 			}
 			else
 			{
+				Debug.Log("Wait Collision");
 				targetPosition = new Vector3( arCamera.transform.position.x, 
-											  zombie.transform.position.y, 
+											  0, 
 											  arCamera.transform.position.z );
 				zombie.transform.LookAt(targetPosition);
-				// handle 2nd delta or look condition before running
 				// zombie.GetComponent<AudioSource>().Play();
+				zombie.transform.Translate(Vector3.forward * 1.5f*Time.deltaTime);
 				
-				if (deltaEnd > 0)
-				{
-					deltaEnd -= Time.deltaTime;
-					transform.Translate(Vector3.forward * 1.5f*Time.deltaTime);
-				}
-				else
+				if(endTrigger)
 				{
 					done = true;
 					Debug.Log("Script4 Done");

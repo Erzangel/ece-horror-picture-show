@@ -9,6 +9,7 @@ using UnityEngine.XR.ARSubsystems;
 //Class representing the events that will happen during the movie. All events should inherit from this class.
 public class Event : MonoBehaviour
 {
+    public string ID;
     //Is the event done?
     public bool done = false;
     //Type of the component to add (example : Event0)
@@ -23,6 +24,8 @@ public class Event : MonoBehaviour
     public List<GameObject> prefabs;
 	//List of instances of said prefabs currently active in the event. Must be set here to be destroyed when we clear the event.
     public List<GameObject> instances;
+
+    public TriggerManager m_trManager;
 	//Constructor : pass the type of the event (the component name)
     public Event(System.Type t)
     {
@@ -37,12 +40,14 @@ public class Event : MonoBehaviour
 		m_RaycastManager = arSessionOrigin.GetComponent<ARRaycastManager>();
         m_AnchorManager = arSessionOrigin.GetComponent<ARAnchorManager>();
         m_PlaneManager = arSessionOrigin.GetComponent<ARPlaneManager>();
+        m_trManager = arSessionOrigin.GetComponentInChildren<TriggerManager>();
         m_AnchorPoints = new List<ARAnchor>();
 
         dummy = GameObject.Find("EventTriggerDummy");
 
         prefabs = new List<GameObject>();
 		instances = new List<GameObject>();
+        
     }
     public void Clear()
     {
