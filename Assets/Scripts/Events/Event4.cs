@@ -27,7 +27,7 @@ public class Event4 : Event
     {
         base.Awake();
 		ID = "ZombieRun";
-        deltaInit = 3.0f; // Delay before which the Event will attempt to spawn the Zombie
+        deltaInit = 6.0f; // Delay before which the Event will attempt to spawn the Zombie
         arCamera = GameObject.Find("AR Camera"); // Get AR Camera from Scene
 		s_Hits = new List<ARRaycastHit>(); // List for Raycast hits upon instantiating
 		prefabs.Add(Resources.Load<GameObject>("ZombieEnding")); // Prefab to use for the ZombieSpawn
