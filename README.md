@@ -9,7 +9,7 @@ We wish to create a new way to consume <b>horror movies</b> at home, answering t
 
 # Example Video
 
-[Link (03/03/2022](https://youtu.be/dVuNcO_M5Sg)
+[Link (03/03/2022)](https://youtu.be/dVuNcO_M5Sg)
 
 # App Features
 
