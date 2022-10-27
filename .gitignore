@@ -8,6 +8,9 @@
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # [Aa]ssets/AssetStoreTools*
 
+# Ignore the build_info file from Assets/ folder
+[Aa]ssets/StreamingAssets/build_info
+
 # Visual Studio cache directory
 .vs/
 
