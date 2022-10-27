@@ -14,11 +14,19 @@ It has three goals:
 This project was born from the ambition of a group of ECE students and their teacher to overtake Netflix.
 We wish to create a new way to consume <b>horror movies</b> at home, answering the spectator's wish for strong emotions and thrills with <b>Augmented Reality technologies</b>.
 
+# Repository Content
+
+- AR Video Player prototype
+
+To-do:
+
+- Content library
+
 # Example Video
 
-[Link (03/03/2022)](https://youtu.be/dVuNcO_M5Sg)
+[AR Player & Sample AR movie prototype (03/03/2022)](https://youtu.be/dVuNcO_M5Sg)
 
-# App Features
+# AR Player Features
 
 - A Unity Project that can be built and deployed on any Android/iOS phone equipped with a camera
 - Room-scale AR project that detects surfaces around the user
