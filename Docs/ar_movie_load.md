@@ -19,13 +19,13 @@ An Event has a set of properties, for example:
 - A `List<GameObject>` of prefabs used, and a `List<GameObject>` of instances of those prefabs, cleaned up on Event deletion with the Clear() method
 - An `Awake()` method initializing everything
 
-The full definition of the Event class [can be found here](../Assets/Scripts/Event.cs).
+The full definition of the Event class [can be found here](../Assets/Scripts/Events/Event.cs).
 
-Examples of Events implementing this class are [Event0](../Assets/Scripts/Event0.cs) or [Event1](../Assets/Scripts/Event1.cs)
+Examples of Events implementing this class are [Event0](../Assets/Scripts/Events/Event0.cs) or [Event1](../Assets/Scripts/Events/Event1.cs)
 
 ## ScriptedEvent class
 
-There is a [ScriptedEvent class](../Assets/Scripts/ScriptedEvents.cs) which handles all events. After a given timer, it plays the first event, Event0.
+There is a [ScriptedEvent class](../Assets/Scripts/Events/ScriptedEvents.cs) which handles all events. After a given timer, it plays the first event, Event0.
 
 Events then call each other using the `playEvent<T>()` and `clearEvent<T>()` methods from the ScriptedEvent class. Event0 can call `eventManager.playEvent<Event1>()` to play Event1 when it is done.
 
