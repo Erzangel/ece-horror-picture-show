@@ -21,7 +21,7 @@ An Event has a set of properties, for example:
 
 The full definition of the Event class [can be found here](../Assets/Scripts/Event.cs).
 
-Examples of Events implementing this class are [Event0]((../Assets/Scripts/Event0.cs) or [Event1]((../Assets/Scripts/Event1.cs)
+Examples of Events implementing this class are [Event0](../Assets/Scripts/Event0.cs) or [Event1](../Assets/Scripts/Event1.cs)
 
 ## ScriptedEvent class
 
