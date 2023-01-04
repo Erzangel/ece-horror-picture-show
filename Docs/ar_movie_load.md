@@ -42,7 +42,32 @@ Here are links containing indications on how to achieve the link between a catal
 - Loading scenes:
   - [How to load a Unity Scene at runtime](https://docs.unity3d.com/Packages/com.unity.entities@0.50/manual/loading_scenes.html)
   - [Loading a Scene from a .unity file](https://answers.unity.com/questions/1463977/load-scene-from-unity-file.html)
-- Using Deep Linking (opening an app with another app with a context)
+- Using Deep Linking (opening an app with another app with a context):
   - [Linking in React Native](https://reactnative.dev/docs/linking)
   - [Stackoverflow thread: saving files in React Native](https://stackoverflow.com/questions/44376002/what-are-my-options-for-storing-data-when-using-react-native-ios-and-android)
   - [Enabling Deep Linking in an Unity app](https://docs.unity3d.com/Manual/deep-linking.html)
+- Doing AR in React Native:
+  - [ViroReact for AR/VR apps in React Native](https://medium.com/simform-engineering/what-is-augmented-reality-how-to-implement-ar-using-react-native-2340bdba9a8d)
+  - [ar-core-react-native NPM package](https://www.npmjs.com/package/ar-core-react-native/v/1.2.4)
+  - [react-native-arcore NPM package](https://github.com/pritasam/react-native-arcore)
+
+## Our goals
+
+- Download an AR movie from the catalog app & play it using Unity/ARCore
+- Make sure an AR movie cannot easily be exported & shared for free
+
+## Possible strategies
+
+Each movie is an independent Unity/external app:
+
+- No way to secure an APK, anyone can share it & install it
+
+Playing movies embed in our app:
+
+- Could work with ARCore/React Native AR apps, **is it possible with Unity?**
+- Maybe this can work for a type of AR content, while we rely on an external player for Unity AR movies
+
+## Important questions
+
+- What if an AR movie does not support Unity/is pure ARCore or ARKit? No integration with Unity then!
+  - As described above, we can instead separate Unity & ARCore/ARKit apps
