@@ -64,10 +64,27 @@ Each movie is an independent Unity/external app:
 
 Playing movies embed in our app:
 
-- Could work with ARCore/React Native AR apps, **is it possible with Unity?**
+- Could work with ARCore/React Native AR apps, **is it possible with Unity? Yes! See below**
 - Maybe this can work for a type of AR content, while we rely on an external player for Unity AR movies
+
+Playing Unity movies embed in our app:
+
+- [Possible for an Android app, as this article demonstrates](https://medium.com/@razvan_57516/how-to-embed-unity-3d-in-a-native-android-app-5d030673bbf4)
+- Requires to do some Gradle app tweaks, which may be troublesome when doing this dynamically
+- Possible to call C# methods to Unity from the native Android app with `UnitySendMessage("GameObjectName", "MethodName", "Message to send")`
+- Can this be done with React Native in a better way? [Yes: There is a react-native-unity NPM package that does this better!](https://github.com/azesmway/react-native-unity). Here is [another older one](https://github.com/asmadsen/react-native-unity-view).
+  - For the former one, AR apparently works with it with ARFoundation [according to this GitHub issue](https://github.com/azesmway/react-native-unity/issues/50)
+  - Works in full screen mostly: that is what we want
+  - [Medium article going into detail in how it works](https://medium.com/codeexplorers/connecting-the-dots-between-react-native-and-unity-3d-using-gradle-67f93b92c254)
+- Can this be done for iOS?
+- **Can this be done dynamically without hard-coding it, and from a downloaded project?**
 
 ## Important questions
 
 - What if an AR movie does not support Unity/is pure ARCore or ARKit? No integration with Unity then!
   - As described above, we can instead separate Unity & ARCore/ARKit apps
+  
+## Things to test out
+
+- Playing an Unity AR movie embed into the React Native catalog
+- Dynamically linking React Native and Unity
