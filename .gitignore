@@ -13,6 +13,10 @@
 
 # Visual Studio cache directory
 .vs/
+# Code Editors
+.vscode
+# macOS
+.DS_Store
 
 # Gradle cache directory
 .gradle/
